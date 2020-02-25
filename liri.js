@@ -35,12 +35,37 @@ inquirer
                     var url = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
                     console.log(url);
                     getArtist();
+                    console.log(artist);
                     function getArtist() {
-                        console.log(artist);
                         axios.get(url)
+
                             .then(function (response) {
+                                var header = "Upcoming Concerts for " + artist + ":";
+                                console.log(header);
+                                fs.appendFile("log.txt", header, function (err) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        console.log("Content Added!")
+                                    }
+                                });
                                 for (i = 0; i < response.data.length; i++) {
-                                    console.log(response.data[i].venue.city + " at " + response.data[i].venue.name + " " + moment(response.data[i].datetime).format("MM/DD/YYYY"));
+                                    var artistData = response.data[i].venue.city + " at " + response.data[i].venue.name + " " + moment(response.data[i].datetime).format("MM/DD/YYYY") + "\n";
+                                    console.log(artistData);
+                                    /*fs.appendFile("log.txt", artist, function (err){
+                                        if (err) {
+                                            console.log(err);
+                                        } else {
+                                            console.log("Content Added!")
+                                        }
+                                    });*/
+                                    fs.appendFile("log.txt", artistData, function (err) {
+                                        if (err) {
+                                            console.log(err);
+                                        } else {
+                                            console.log("Content Added!")
+                                        }
+                                    });
                                 }
                             })
                             .catch(function (error) {
@@ -88,7 +113,7 @@ inquirer
                                 return console.log('Error occurred: ' + err);
                             }
                             for (i = 0; i < data.tracks.items.length; i++) {
-                                var spotifyText = "Artist Name: " + data.tracks.items[i].artists[0].name + "\nSong Name: " + data.tracks.items[i].name + "\nPreview Link: " + data.tracks.items[i].preview_url + "\nAlbum Name: " + data.tracks.items[i].album.name + "\n";
+                                var spotifyText = "Artist Name: " + data.tracks.items[i].artists[0].name + "\nSong Name: " + data.tracks.items[i].name + "\nPreview Link: " + data.tracks.items[i].preview_url + "\nAlbum Name: " + data.tracks.items[i].album.name + "\n" + "\n";
                                 console.log(spotifyText);
                                 fs.appendFile("log.txt", spotifyText, function (err) {
                                     if (err) {
@@ -160,17 +185,23 @@ inquirer
                     }
                 });
 
-            if (inquirerResponse == "do-what-it-says") {
-                fs.readFile("random.txt", "utf8", function (error, data) {
-                    if (error) {
-                        return console.log(error);
-                    }
-                    console.log(data);
-                    var dataArr = data.split(",");
-                    console.log(dataArr);
-                });
-            }
+
         }
-    })
+        if (inquirerResponse.actions == "do-what-it-says") {
+            console.log("do what it says");
+            fs.readFile("random.txt", "utf8", function (error, data) {
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log(data);
+                var dataArr = data.split(",");
+                console.log(dataArr);
+                spotify.search({ type: 'track', query: dataArr[1] }, function (err, data) {
+                    console.log("Artist Name: " + data.tracks.items[0].artists[0].name + "\nSong Name: " + data.tracks.items[0].name + "\nPreview Link: " + data.tracks.items[0].preview_url + "\nAlbum Name: " + data.tracks.items[0].album.name + "\n");
+                });
+            })
+        }
+    });
 
 
