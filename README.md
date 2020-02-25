@@ -1,3 +1,3 @@
 # liri-node-app
 
-![Image of spotify-this functionality](octodex.github.com/images/spotify1.jpg)
+![Image of spotify-this] (https://mcb85.github.com/Spotify2.jpg)
