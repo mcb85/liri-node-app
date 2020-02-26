@@ -4,5 +4,5 @@ This app provides the user access to the Bands-in-Town, Spotify, and OMDB databa
 
 
 
-#Technologies used
+# Technologies used
 This app incorporates the axios npm package to make API calls to the Bands-in-Town and OMDB databases. In order to make calls to Spotify, the node-spotify-api npm package is utilized. The built-in fs package is utilized in order to read text files and log api response data to a text file. The inquirer npm package is utilized for prompting user and storing their responses. The moment package is utilized in order to format concert dates. 
