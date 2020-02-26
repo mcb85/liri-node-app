@@ -4,8 +4,29 @@ This app provides the user access to the Bands-in-Town, Spotify, and OMDB databa
 
 
 
-## Technologies used
+## Technologies Used
 This app incorporates the axios npm package to make API calls to the Bands-in-Town and OMDB databases. In order to make calls to Spotify, the node-spotify-api npm package is utilized. The built-in fs package is utilized in order to read text files and log api response data to a text file. The inquirer npm package is utilized for prompting user and storing their responses. The moment package is utilized in order to format concert dates. 
 
+### Initial Prompt
+![Image of initial prompt](https://github.com/mcb85/liri-node-app/blob/master/initial-prompt.jpg)
+
+### Concert This
 
 ![Image of concert-this](https://github.com/mcb85/liri-node-app/blob/master/concert-this.JPG)
+
+### Spotify This
+
+![Image of spotify-this](https://github.com/mcb85/liri-node-app/blob/master/spotify1.JPG)
+
+### Movie This
+
+![Image of movie-this](https://github.com/mcb85/liri-node-app/blob/master/movie-this.JPG)
+
+### Do What it Says
+
+![Image of do-what-it-says](https://github.com/mcb85/liri-node-app/blob/master/do-what-it-says.jpg)
+
+### Data Logged to Text File
+
+![Image of data to text file](https://github.com/mcb85/liri-node-app/blob/master/spotify-logtxt.JPG)
+
